@@ -2,11 +2,16 @@ package com.capstone.capstone.models;
 
 import com.capstone.capstone.enums.Area;
 import com.fasterxml.jackson.annotation.*;
+
+import org.apache.commons.collections4.MultiValuedMap;
+import org.apache.commons.collections4.multimap.ArrayListValuedHashMap;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 @Table(name = "users")
@@ -42,6 +47,17 @@ public class User {
 
     @Column(name = "uid")
     private String uid;
+
+//    @ElementCollection
+//    @CollectionTable(name = "notifications", joinColumns = @JoinColumn(name = "user_id"))
+//    @MapKeyColumn(name = "notification_key")
+//    @Column(name = "notification_value")
+//    @Transient  // This annotation is used because JPA does not support MultiValueMap
+//    private MultiValuedMap<String, String> notifications;
+
+    @JsonIgnoreProperties({"user"})
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Notification> notifications;
 
     @JsonIgnoreProperties({"users"})
     @ManyToMany
@@ -81,6 +97,8 @@ public class User {
         this.gender = null;
         this.area = null;
         this.totalDistance = 0;
+//        this.notifications = new ArrayListValuedHashMap<>();
+        this.notifications = new ArrayList<Notification>();
         this.walkies = new ArrayList<Walkie>();
         this.groupWalkies = new ArrayList<GroupWalkie>();
         this.dogs = new ArrayList<Dog>();
@@ -213,6 +231,27 @@ public class User {
 
     public void setPhotoURL(String photoURL) {
         this.photoURL = photoURL;
+    }
+
+//    public MultiValuedMap<String, String> getNotifications() {
+//        return notifications;
+//    }
+//
+//    public void setNotifications(MultiValuedMap<String, String> notifications) {
+//        this.notifications = notifications;
+//    }
+
+
+    public List<Notification> getNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(List<Notification> notifications) {
+        this.notifications = notifications;
+    }
+
+    public void addNotification(Notification notification){
+        this.notifications.add(notification);
     }
 }
 

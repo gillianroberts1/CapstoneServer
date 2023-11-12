@@ -31,6 +31,9 @@ public class DataLoader implements ApplicationRunner {
     @Autowired
     WalkieRepository walkieRepository;
 
+    @Autowired
+    NotificationRepository notificationRepository;
+
     public  DataLoader(){
     }
 
@@ -120,10 +123,14 @@ public class DataLoader implements ApplicationRunner {
         GroupWalkie groupWalkie3 = new GroupWalkie("Winky Walk", location2, "26-11-2023", 4.1, 60);
         groupwalkieRepository.save(groupWalkie3);
 
+        Notification notification1 = new Notification("Glasgow", "Park", user1);
+        notificationRepository.save(notification1);
+
         user1.addDog(dog1);
         user1.addDog(dog2);
         user1.addWalkie(walkie1);
         user1.addGropuWalkie(groupWalkie1);
+        user1.addNotification(notification1);
         userRepository.save(user1);
 
         user2.addDog(dog3);
@@ -166,6 +173,8 @@ public class DataLoader implements ApplicationRunner {
         groupWalkie3.addDog(dog4);
         groupWalkie3.addDog(dog5);
         groupwalkieRepository.save(groupWalkie3);
+
+
 
     }
 
