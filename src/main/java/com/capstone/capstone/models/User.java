@@ -31,13 +31,13 @@ public class User {
     private String email;
 
     @Column(name = "age")
-    private int age;
+    private Integer age;
 
     @Column(name = "photoURL")
     private String photoURL;
 
     @Column(name = "total_distance")
-    private int totalDistance;
+    private Integer totalDistance;
 
     @Column(name = "gender")
     private String gender;
@@ -97,7 +97,6 @@ public class User {
         this.gender = null;
         this.area = null;
         this.totalDistance = 0;
-//        this.notifications = new ArrayListValuedHashMap<>();
         this.notifications = new ArrayList<Notification>();
         this.walkies = new ArrayList<Walkie>();
         this.groupWalkies = new ArrayList<GroupWalkie>();
@@ -132,19 +131,19 @@ public class User {
         this.lastName = lastName;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
-    public int getTotalDistance() {
+    public Integer getTotalDistance() {
         return totalDistance;
     }
 
-    public void setTotalDistance(int totalDistance) {
+    public void setTotalDistance(Integer totalDistance) {
         this.totalDistance = totalDistance;
     }
 

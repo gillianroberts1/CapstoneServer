@@ -4,6 +4,7 @@ import com.capstone.capstone.enums.Breed;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.Incubating;
 import org.hibernate.annotations.Cascade;
 
@@ -26,7 +27,7 @@ public class Dog {
     @Column(name ="breed")
     private Breed breed;
     @Column(name = "age")
-    private int age;
+    private Integer age;
     @Column(name = "photoURL")
     private String photoURL;
     @Column(name="neutered")
@@ -36,14 +37,14 @@ public class Dog {
     @Column(name="vaccinated")
     private  Boolean vaccinated;
     @Column(name = "rating")
-    private int rating;
+    private Integer rating;
 
     @JsonIgnoreProperties({"dogs"})
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @JsonIgnore
+    @JsonIgnoreProperties({"dogs"})
     @ManyToMany
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
@@ -53,6 +54,7 @@ public class Dog {
     )
     private List<Walkie> walkies;
 
+    @JsonIgnoreProperties({"dogs"})
     @ManyToMany
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
@@ -144,11 +146,11 @@ public class Dog {
         this.vaccinated = vaccinated;
     }
 
-    public int getRating() {
+    public Integer getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(Integer rating) {
         this.rating = rating;
     }
 
@@ -172,11 +174,11 @@ public class Dog {
         this.walkies.add(walkie);
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 

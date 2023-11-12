@@ -48,6 +48,37 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
-    //@PutMapping <---- Left to be done
-
+    @PutMapping(value = "/users/{id}")
+    public ResponseEntity<User> updateUser(@RequestBody User updatedUser, @PathVariable Long id){
+        User existingUser = userRepository.findById(id).get();
+        if(updatedUser.getAge() != null) {
+            existingUser.setAge(updatedUser.getAge());
+        }
+        if(updatedUser.getGender() != null) {
+            existingUser.setGender(updatedUser.getGender());
+        }
+        if(updatedUser.getArea() != null) {
+            existingUser.setArea(updatedUser.getArea());
+        }
+        if(updatedUser.getFirstName() != null) {
+            existingUser.setFirstName(updatedUser.getFirstName());
+        }
+        if(updatedUser.getLastName() != null) {
+            existingUser.setLastName(updatedUser.getLastName());
+        }
+        if(updatedUser.getDogs() != null) {
+            existingUser.setDogs(updatedUser.getDogs());
+        }
+        if(updatedUser.getGroupWalkies() != null) {
+            existingUser.setGroupWalkies(updatedUser.getGroupWalkies());
+        }
+        if(updatedUser.getWalkies() != null) {
+            existingUser.setWalkies(updatedUser.getWalkies());
+        }
+        if(updatedUser.getPhotoURL() != null) {
+            existingUser.setPhotoURL(updatedUser.getPhotoURL());
+        }
+        userRepository.save(existingUser);
+        return new ResponseEntity<>(existingUser, HttpStatus.OK);
+    }
 }
