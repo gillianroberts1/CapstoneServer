@@ -4,6 +4,7 @@ import com.capstone.capstone.enums.Breed;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.Incubating;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
@@ -24,6 +25,10 @@ public class Dog {
     private String gender;
     @Column(name ="breed")
     private Breed breed;
+    @Column(name = "age")
+    private int age;
+    @Column(name = "photoURL")
+    private String photoURL;
     @Column(name="neutered")
     private Boolean neutered;
     @Column(name="leash")
@@ -48,8 +53,6 @@ public class Dog {
     )
     private List<Walkie> walkies;
 
-//    @JsonIgnoreProperties({"dogs"})
-//    @JsonBackReference
     @ManyToMany
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
@@ -64,6 +67,8 @@ public class Dog {
         this.gender = gender;
         this.breed = breed;
         this.user = user;
+        this.age = 0;
+        this.photoURL = null;
         this.neutered = false;
         this.leash = false;
         this.vaccinated = false;
@@ -165,5 +170,21 @@ public class Dog {
 
     public void addWalkie(Walkie walkie) {
         this.walkies.add(walkie);
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getPhotoURL() {
+        return photoURL;
+    }
+
+    public void setPhotoURL(String photoURL) {
+        this.photoURL = photoURL;
     }
 }
