@@ -2,11 +2,16 @@ package com.capstone.capstone.models;
 
 import com.capstone.capstone.enums.Area;
 import com.fasterxml.jackson.annotation.*;
+
+import org.apache.commons.collections4.MultiValuedMap;
+import org.apache.commons.collections4.multimap.ArrayListValuedHashMap;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 @Table(name = "users")
@@ -26,13 +31,13 @@ public class User {
     private String email;
 
     @Column(name = "age")
-    private int age;
+    private Integer age;
 
     @Column(name = "photoURL")
     private String photoURL;
 
     @Column(name = "total_distance")
-    private int totalDistance;
+    private Integer totalDistance;
 
     @Column(name = "gender")
     private String gender;
@@ -42,6 +47,17 @@ public class User {
 
     @Column(name = "uid")
     private String uid;
+
+//    @ElementCollection
+//    @CollectionTable(name = "notifications", joinColumns = @JoinColumn(name = "user_id"))
+//    @MapKeyColumn(name = "notification_key")
+//    @Column(name = "notification_value")
+//    @Transient  // This annotation is used because JPA does not support MultiValueMap
+//    private MultiValuedMap<String, String> notifications;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "user_id")
+    private List<Notification> notifications = new ArrayList<>();
 
     @JsonIgnoreProperties({"users"})
     @ManyToMany
@@ -81,6 +97,7 @@ public class User {
         this.gender = null;
         this.area = null;
         this.totalDistance = 0;
+        this.notifications = new ArrayList<Notification>();
         this.walkies = new ArrayList<Walkie>();
         this.groupWalkies = new ArrayList<GroupWalkie>();
         this.dogs = new ArrayList<Dog>();
@@ -114,19 +131,19 @@ public class User {
         this.lastName = lastName;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
-    public int getTotalDistance() {
+    public Integer getTotalDistance() {
         return totalDistance;
     }
 
-    public void setTotalDistance(int totalDistance) {
+    public void setTotalDistance(Integer totalDistance) {
         this.totalDistance = totalDistance;
     }
 
@@ -213,6 +230,18 @@ public class User {
 
     public void setPhotoURL(String photoURL) {
         this.photoURL = photoURL;
+    }
+
+    public List<Notification> getNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(List<Notification> notifications) {
+        this.notifications = notifications;
+    }
+
+    public void addNotification(Notification notification){
+        this.notifications.add(notification);
     }
 }
 

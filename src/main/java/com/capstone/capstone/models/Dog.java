@@ -4,6 +4,8 @@ import com.capstone.capstone.enums.Breed;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.Incubating;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
@@ -24,6 +26,10 @@ public class Dog {
     private String gender;
     @Column(name ="breed")
     private Breed breed;
+    @Column(name = "age")
+    private Integer age;
+    @Column(name = "photoURL")
+    private String photoURL;
     @Column(name="neutered")
     private Boolean neutered;
     @Column(name="leash")
@@ -31,14 +37,14 @@ public class Dog {
     @Column(name="vaccinated")
     private  Boolean vaccinated;
     @Column(name = "rating")
-    private int rating;
+    private Integer rating;
 
     @JsonIgnoreProperties({"dogs"})
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @JsonIgnore
+    @JsonIgnoreProperties({"dogs"})
     @ManyToMany
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
@@ -48,8 +54,7 @@ public class Dog {
     )
     private List<Walkie> walkies;
 
-//    @JsonIgnoreProperties({"dogs"})
-//    @JsonBackReference
+    @JsonIgnoreProperties({"dogs"})
     @ManyToMany
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
@@ -64,6 +69,8 @@ public class Dog {
         this.gender = gender;
         this.breed = breed;
         this.user = user;
+        this.age = 0;
+        this.photoURL = null;
         this.neutered = false;
         this.leash = false;
         this.vaccinated = false;
@@ -139,11 +146,11 @@ public class Dog {
         this.vaccinated = vaccinated;
     }
 
-    public int getRating() {
+    public Integer getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(Integer rating) {
         this.rating = rating;
     }
 
@@ -165,5 +172,21 @@ public class Dog {
 
     public void addWalkie(Walkie walkie) {
         this.walkies.add(walkie);
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public String getPhotoURL() {
+        return photoURL;
+    }
+
+    public void setPhotoURL(String photoURL) {
+        this.photoURL = photoURL;
     }
 }
