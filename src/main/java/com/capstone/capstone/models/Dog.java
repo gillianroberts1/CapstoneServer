@@ -25,7 +25,7 @@ public class Dog {
     @Column(name="gender")
     private String gender;
     @Column(name ="breed")
-    private Breed breed;
+    private String breed;
     @Column(name = "age")
     private Integer age;
     @Column(name = "photoURL")
@@ -44,27 +44,27 @@ public class Dog {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @JsonIgnoreProperties({"dogs"})
-    @ManyToMany
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @JoinTable(
-            name = "dogs_walkies",
-            joinColumns ={@JoinColumn(name = "dog_id", nullable = false, updatable = false)},
-            inverseJoinColumns =  {@JoinColumn(name = "walkie_id", nullable = false, updatable = false)}
-    )
-    private List<Walkie> walkies;
+//    @JsonIgnoreProperties({"dogs"})
+//    @ManyToMany
+//    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+//    @JoinTable(
+//            name = "dogs_walkies",
+//            joinColumns ={@JoinColumn(name = "dog_id", nullable = false, updatable = false)},
+//            inverseJoinColumns =  {@JoinColumn(name = "walkie_id", nullable = false, updatable = false)}
+//    )
+//    private List<Walkie> walkies;
+//
+//    @JsonIgnoreProperties({"dogs"})
+//    @ManyToMany
+//    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+//    @JoinTable(
+//            name = "dogs_groupWalkies",
+//            joinColumns ={@JoinColumn(name = "dog_id", nullable = false, updatable = false)},
+//            inverseJoinColumns =  {@JoinColumn(name = "groupWalkie_id", nullable = false, updatable = false)}
+//    )
+//    private List<GroupWalkie> groupWalkies;
 
-    @JsonIgnoreProperties({"dogs"})
-    @ManyToMany
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @JoinTable(
-            name = "dogs_groupWalkies",
-            joinColumns ={@JoinColumn(name = "dog_id", nullable = false, updatable = false)},
-            inverseJoinColumns =  {@JoinColumn(name = "groupWalkie_id", nullable = false, updatable = false)}
-    )
-    private List<GroupWalkie> groupWalkies;
-
-    public Dog(String name, String gender, Breed breed, User user) {
+    public Dog(String name, String gender, String breed, User user) {
         this.name = name;
         this.gender = gender;
         this.breed = breed;
@@ -75,8 +75,8 @@ public class Dog {
         this.leash = false;
         this.vaccinated = false;
         this.rating = 0;
-        this.walkies = new ArrayList<Walkie>();
-        this.groupWalkies = new ArrayList<GroupWalkie>();
+//        this.walkies = new ArrayList<Walkie>();
+//        this.groupWalkies = new ArrayList<GroupWalkie>();
     }
 
     public Dog() {
@@ -114,11 +114,11 @@ public class Dog {
         this.gender = gender;
     }
 
-    public Breed getBreed() {
+    public String getBreed() {
         return breed;
     }
 
-    public void setBreed(Breed breed) {
+    public void setBreed(String breed) {
         this.breed = breed;
     }
 
@@ -154,25 +154,25 @@ public class Dog {
         this.rating = rating;
     }
 
-    public List<Walkie> getWalkies() {
-        return walkies;
-    }
-
-    public void setWalkies(List<Walkie> walkies) {
-        this.walkies = walkies;
-    }
-
-    public List<GroupWalkie> getGroupWalkies() {
-        return groupWalkies;
-    }
-
-    public void setGroupWalkies(List<GroupWalkie> groupWalkies) {
-        this.groupWalkies = groupWalkies;
-    }
-
-    public void addWalkie(Walkie walkie) {
-        this.walkies.add(walkie);
-    }
+//    public List<Walkie> getWalkies() {
+//        return walkies;
+//    }
+//
+//    public void setWalkies(List<Walkie> walkies) {
+//        this.walkies = walkies;
+//    }
+//
+//    public List<GroupWalkie> getGroupWalkies() {
+//        return groupWalkies;
+//    }
+//
+//    public void setGroupWalkies(List<GroupWalkie> groupWalkies) {
+//        this.groupWalkies = groupWalkies;
+//    }
+//
+//    public void addWalkie(Walkie walkie) {
+//        this.walkies.add(walkie);
+//    }
 
     public Integer getAge() {
         return age;

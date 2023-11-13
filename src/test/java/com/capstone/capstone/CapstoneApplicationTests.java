@@ -51,7 +51,7 @@ class CapstoneApplicationTests {
 	public void canCreateDogAndSave(){
 		User john = new User("John", "Doe", "johndoe@gmail.com");
 		userRepository.save(john);
-		Dog gaston = new Dog("Gaston", "male", Breed.DOBERMAN, john);
+		Dog gaston = new Dog("Gaston", "male", "DOBERMAN", john);
 		dogRepository.save(gaston);
 
 	}
@@ -59,7 +59,7 @@ class CapstoneApplicationTests {
 	@Test
 	public void canAssignDogToUser(){
 		User john = new User("John", "Doe", "johndoe@gmail.com");
-		Dog gaston = new Dog("Gaston", "male", Breed.DOBERMAN, john);
+		Dog gaston = new Dog("Gaston", "male", "DOBERMAN", john);
 		john.addDog(gaston);
 		userRepository.save(john);
 	}
@@ -71,7 +71,7 @@ class CapstoneApplicationTests {
 		locationRepository.save(kelvingrove);
 		User john = new User("John", "Doe", "johndoe@gmail.com");
 		userRepository.save(john);
-		Dog gaston = new Dog("Gaston", "male", Breed.DOBERMAN, john);
+		Dog gaston = new Dog("Gaston", "male", "DOBERMAN", john);
 		dogRepository.save(gaston);
 	}
 
@@ -79,7 +79,7 @@ class CapstoneApplicationTests {
 	public void canCreateWalkieAndAddDogAndUserAndSave(){
 		User john = new User("John", "Doe", "johndoe@gmail.com");
 		userRepository.save(john);
-		Dog gaston = new Dog("Gaston", "male", Breed.DOBERMAN, john);
+		Dog gaston = new Dog("Gaston", "male", "DOBERMAN", john);
 		dogRepository.save(gaston);
 		john.addDog(gaston);
 		userRepository.save(john);
@@ -88,7 +88,7 @@ class CapstoneApplicationTests {
 		Walkie stroll = new Walkie("07/11/23", queensPark);
 		walkieRepository.save(stroll);
 		stroll.addUser(john);
-		stroll.addDog(gaston);
+//		stroll.addDog(gaston);
 		walkieRepository.save(stroll);
 	}
 

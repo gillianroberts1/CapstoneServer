@@ -62,25 +62,25 @@ public class DataLoader implements ApplicationRunner {
         userRepository.save(user10 );
 
 
-        Dog dog1 = new Dog("Becky", "female", Breed.CHIHUAHUA, user1);
+        Dog dog1 = new Dog("Becky", "female", "CHIHUAHUA", user1);
         dogRepository.save(dog1);
-        Dog dog2 = new Dog("Max", "male", Breed.LABRADOR, user1);
+        Dog dog2 = new Dog("Max", "male", "LABRADOR", user1);
         dogRepository.save(dog2);
-        Dog dog3 = new Dog("Bella", "female", Breed.BULLDOG, user3);
+        Dog dog3 = new Dog("Bella", "female", "BULLDOG", user3);
         dogRepository.save(dog3);
-        Dog dog4 = new Dog("Rocky", "male", Breed.GOLDENRETRIEVER, user4);
+        Dog dog4 = new Dog("Rocky", "male", "GOLDENRETRIEVER", user4);
         dogRepository.save(dog4);
-        Dog dog5 = new Dog("Lucy", "female", Breed.POMERANIAN, user5);
+        Dog dog5 = new Dog("Lucy", "female", "POMERANIAN", user5);
         dogRepository.save(dog5);
-        Dog dog6 = new Dog("Charlie", "male", Breed.GERMANSHEPHERD, user6);
+        Dog dog6 = new Dog("Charlie", "male", "GERMANSHEPHERD", user6);
         dogRepository.save(dog6);
-        Dog dog7 = new Dog("Daisy", "female", Breed.DACHSHUND, user7);
+        Dog dog7 = new Dog("Daisy", "female", "DACHSHUND", user7);
         dogRepository.save(dog7);
-        Dog dog8 = new Dog("Cooper", "male", Breed.BEAGLE, user8);
+        Dog dog8 = new Dog("Cooper", "male", "BEAGLE", user8);
         dogRepository.save(dog8);
-        Dog dog9 = new Dog("Lola", "female", Breed.POODLE, user9);
+        Dog dog9 = new Dog("Lola", "female", "POODLE", user9);
         dogRepository.save(dog9);
-        Dog dog10 = new Dog("Tucker", "male", Breed.ROTTWEILER, user10);
+        Dog dog10 = new Dog("Tucker", "male", "ROTTWEILER", user10);
         dogRepository.save(dog10);
 
 
@@ -153,31 +153,31 @@ public class DataLoader implements ApplicationRunner {
         user4.addDog(dog5);
         userRepository.save(user4);
 
-        dog1.addWalkie(walkie1);
-        dogRepository.save(dog1);
-//
-        dog2.addWalkie(walkie2);
-        dogRepository.save(dog2);
-//
-        dog3.addWalkie(walkie3);
-        dogRepository.save(dog3);
-//
-        dog4.addWalkie(walkie4);
-        dogRepository.save(dog4);
+//        dog1.addWalkie(walkie1);
+//        dogRepository.save(dog1);
+////
+//        dog2.addWalkie(walkie2);
+//        dogRepository.save(dog2);
+////
+//        dog3.addWalkie(walkie3);
+//        dogRepository.save(dog3);
+////
+//        dog4.addWalkie(walkie4);
+//        dogRepository.save(dog4);
 
         groupWalkie1.addUser(user1);
         groupWalkie1.addUser(user2);
-        groupWalkie1.addDog(dog1);
-        groupWalkie1.addDog(dog2);
+//        groupWalkie1.addDog(dog1);
+//        groupWalkie1.addDog(dog2);
         groupwalkieRepository.save(groupWalkie1);
         groupWalkie2.addUser(user3);
-        groupWalkie2.addDog(dog3);
+//        groupWalkie2.addDog(dog3);
         groupwalkieRepository.save(groupWalkie2);
         groupWalkie3.addUser(user4);
         groupWalkie3.addUser(user5);
         groupWalkie3.addUser(user6);
-        groupWalkie3.addDog(dog4);
-        groupWalkie3.addDog(dog5);
+//        groupWalkie3.addDog(dog4);
+//        groupWalkie3.addDog(dog5);
         groupwalkieRepository.save(groupWalkie3);
 
 

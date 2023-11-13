@@ -41,15 +41,15 @@ public class GroupWalkie {
     private List<User> users;
 
 //    @JsonIgnoreProperties({"groupWalkies"})
-    @JsonIgnore
-    @ManyToMany
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @JoinTable(
-            name = "groupWalkies_dogs",
-            joinColumns ={@JoinColumn(name = "groupWalkie_id", nullable = false, updatable = false)},
-            inverseJoinColumns =  {@JoinColumn(name = "dog_id", nullable = false, updatable = false)}
-    )
-    private List<Dog> dogs;
+//    @JsonIgnore
+//    @ManyToMany
+//    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+//    @JoinTable(
+//            name = "groupWalkies_dogs",
+//            joinColumns ={@JoinColumn(name = "groupWalkie_id", nullable = false, updatable = false)},
+//            inverseJoinColumns =  {@JoinColumn(name = "dog_id", nullable = false, updatable = false)}
+//    )
+//    private List<Dog> dogs;
 
     @JsonIgnoreProperties({"groupWalkies"})
     @ManyToOne
@@ -63,7 +63,7 @@ public class GroupWalkie {
         this.distance = distance;
         this.duration = duration;
         this.users = new ArrayList<User>();
-        this.dogs = new ArrayList<Dog>();
+//        this.dogs = new ArrayList<Dog>();
     }
 
     public GroupWalkie() {
@@ -117,13 +117,13 @@ public class GroupWalkie {
         this.users = users;
     }
 
-    public List<Dog> getDogs() {
-        return dogs;
-    }
-
-    public void setDogs(List<Dog> dogs) {
-        this.dogs = dogs;
-    }
+//    public List<Dog> getDogs() {
+//        return dogs;
+//    }
+//
+//    public void setDogs(List<Dog> dogs) {
+//        this.dogs = dogs;
+//    }
 
     public Location getLocation() {
         return location;
@@ -137,9 +137,9 @@ public class GroupWalkie {
         this.users.add(user);
     }
 
-    public void addDog(Dog dog){
-        this.dogs.add(dog);
-    }
+//    public void addDog(Dog dog){
+//        this.dogs.add(dog);
+//    }
 
     public void addLocation(Location location){
         this.location = location;
