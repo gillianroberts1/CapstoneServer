@@ -25,9 +25,9 @@ public class Location {
     @OneToMany(mappedBy = "location")
     private List<Walkie> walkies;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "location")
-    private List<GroupWalkie> groupWalkies;
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "location")
+//    private List<GroupWalkie> groupWalkies;
 
     public Location(GlasgowPark glasgowPark) {
         this.glasgowPark = glasgowPark;

@@ -30,6 +30,9 @@ public class GroupWalkie {
     @Column(name = "duration")
     private Integer duration;
 
+    @Column(name = "location")
+    private String location;
+
 
     @ManyToMany
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
@@ -51,12 +54,12 @@ public class GroupWalkie {
 //    )
 //    private List<Dog> dogs;
 
-    @JsonIgnoreProperties({"groupWalkies"})
-    @ManyToOne
-    @JoinColumn(name = "location_id", nullable = false)
-    private Location location;
+//    @JsonIgnoreProperties({"groupWalkies"})
+//    @ManyToOne
+//    @JoinColumn(name = "location_id", nullable = false)
+//    private Location location;
 
-    public GroupWalkie(String name, Location location, String date, Double distance, Integer duration) {
+    public GroupWalkie(String name, String location, String date, Double distance, Integer duration) {
         this.name = name;
         this.location = location;
         this.date = date;
@@ -117,7 +120,19 @@ public class GroupWalkie {
         this.users = users;
     }
 
-//    public List<Dog> getDogs() {
+    public void setDuration(Integer duration) {
+        this.duration = duration;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    //    public List<Dog> getDogs() {
 //        return dogs;
 //    }
 //
@@ -125,13 +140,7 @@ public class GroupWalkie {
 //        this.dogs = dogs;
 //    }
 
-    public Location getLocation() {
-        return location;
-    }
 
-    public void setLocation(Location location) {
-        this.location = location;
-    }
 
     public void addUser(User user){
         this.users.add(user);
@@ -141,7 +150,5 @@ public class GroupWalkie {
 //        this.dogs.add(dog);
 //    }
 
-    public void addLocation(Location location){
-        this.location = location;
-    }
+
 }
