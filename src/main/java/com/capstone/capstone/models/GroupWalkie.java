@@ -28,7 +28,7 @@ public class GroupWalkie {
     private Double distance;
 
     @Column(name = "duration")
-    private int duration;
+    private Integer duration;
 
 
     @ManyToMany
@@ -56,7 +56,7 @@ public class GroupWalkie {
     @JoinColumn(name = "location_id", nullable = false)
     private Location location;
 
-    public GroupWalkie(String name, Location location, String date, Double distance, int duration) {
+    public GroupWalkie(String name, Location location, String date, Double distance, Integer duration) {
         this.name = name;
         this.location = location;
         this.date = date;
@@ -101,7 +101,7 @@ public class GroupWalkie {
         this.distance = distance;
     }
 
-    public int getDuration() {
+    public Integer getDuration() {
         return duration;
     }
 
