@@ -132,23 +132,11 @@ public class GroupWalkie {
         this.location = location;
     }
 
-    //    public List<Dog> getDogs() {
-//        return dogs;
-//    }
-//
-//    public void setDogs(List<Dog> dogs) {
-//        this.dogs = dogs;
-//    }
-
-
-
     public void addUser(User user){
         this.users.add(user);
     }
 
-//    public void addDog(Dog dog){
-//        this.dogs.add(dog);
-//    }
-
-
+    public void removeUser(User user) {
+        this.users.remove(user);
+    }
 }

@@ -1,7 +1,9 @@
 package com.capstone.capstone.controllers;
 
 import com.capstone.capstone.models.GroupWalkie;
+import com.capstone.capstone.models.User;
 import com.capstone.capstone.repository.GroupwalkieRepository;
+import com.capstone.capstone.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,9 @@ import java.util.Optional;
 public class GroupwalkieController {
     @Autowired
     GroupwalkieRepository groupwalkieRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
 
     @GetMapping(value = "/groupwalkies")
@@ -37,6 +42,36 @@ public class GroupwalkieController {
     public ResponseEntity<GroupWalkie> postGroupWalkie(@RequestBody GroupWalkie groupWalkie){
         groupwalkieRepository.save(groupWalkie);
         return new ResponseEntity<>(groupWalkie, HttpStatus.CREATED);
+    }
+
+    @PostMapping(value = "/groupwalkies/{id}/users/{userId}")
+    public ResponseEntity<GroupWalkie> addUserToGroupWalkie(@PathVariable Long id, @PathVariable Long userId){
+        Optional<GroupWalkie> groupWalkieOptional = groupwalkieRepository.findById(id);
+        Optional<User> userOptional = userRepository.findById(userId);
+        if(groupWalkieOptional.isPresent() && userOptional.isPresent()) {
+            GroupWalkie groupWalkie = groupWalkieOptional.get();
+            User user = userOptional.get();
+            groupWalkie.addUser(user);
+            groupwalkieRepository.save(groupWalkie);
+            return new ResponseEntity<>(groupWalkie, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @DeleteMapping(value = "/groupwalkies/{id}/users/{userId}")
+    public ResponseEntity<GroupWalkie> deleteUserFromGroupWalkie(@PathVariable Long id, @PathVariable Long userId) {
+        Optional<GroupWalkie> groupWalkieOptional = groupwalkieRepository.findById(id);
+        Optional<User> userOptional = userRepository.findById(userId);
+        if(groupWalkieOptional.isPresent() && userOptional.isPresent()) {
+            GroupWalkie groupWalkie = groupWalkieOptional.get();
+            User user = userOptional.get();
+            groupWalkie.removeUser(user);
+            groupwalkieRepository.save(groupWalkie);
+            return new ResponseEntity<>(groupWalkie, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @PutMapping(value = "/groupwalkies/{id}")
