@@ -39,5 +39,25 @@ public class GroupwalkieController {
         return new ResponseEntity<>(groupWalkie, HttpStatus.CREATED);
     }
 
-    //@PutMapping <-- To be completed
+    @PutMapping(value = "/groupwalkies/{id}")
+    public ResponseEntity<GroupWalkie> updateGroupWalkie(@RequestBody GroupWalkie updatedGroupWalkie, @PathVariable Long id){
+        GroupWalkie existingGroupWalkie = groupwalkieRepository.findById(id).get();
+        if(updatedGroupWalkie.getName() != null) {
+            existingGroupWalkie.setName(updatedGroupWalkie.getName());
+        }
+        if(updatedGroupWalkie.getDate() != null) {
+            existingGroupWalkie.setDate(updatedGroupWalkie.getDate());
+        }
+        if(updatedGroupWalkie.getDistance() != null) {
+            existingGroupWalkie.setDistance(updatedGroupWalkie.getDistance());
+        }
+        if(updatedGroupWalkie.getDuration() != null) {
+            existingGroupWalkie.setDuration(updatedGroupWalkie.getDuration());
+        }
+        if(updatedGroupWalkie.getUsers() != null) {
+            existingGroupWalkie.setUsers(updatedGroupWalkie.getUsers());
+        }
+        groupwalkieRepository.save(existingGroupWalkie);
+        return new ResponseEntity<>(existingGroupWalkie, HttpStatus.OK);
+    }
 }
