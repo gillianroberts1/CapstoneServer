@@ -3,6 +3,8 @@ package com.capstone.capstone.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.HashMap;
+import java.util.Map;
 
 @Entity
 @Table(name = "notifications")
@@ -12,21 +14,14 @@ public class Notification {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "notification_key")
-    private String key;
+    @ElementCollection
+    @CollectionTable(name = "notification_entries", joinColumns = @JoinColumn(name = "notification_id"))
+    @MapKeyColumn(name = "entry_key")
+    @Column(name = "entry_value")
+    private Map<String, String> entries = new HashMap<>();
 
-    @Column(name = "notification_value")
-    private String value;
-
-    @JsonIgnoreProperties({"dogs"})
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
-
-    public Notification(String key, String value, User user) {
-        this.key = key;
-        this.value = value;
-        this.user = user;
+    public Notification(Map<String, String> entries) {
+        this.entries = entries;
     }
 
     public Notification() {
@@ -40,27 +35,11 @@ public class Notification {
         this.id = id;
     }
 
-    public String getKey() {
-        return key;
+    public Map<String, String> getEntries() {
+        return entries;
     }
 
-    public void setKey(String key) {
-        this.key = key;
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+    public void setEntries(Map<String, String> entries) {
+        this.entries = entries;
     }
 }

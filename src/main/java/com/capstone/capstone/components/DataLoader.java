@@ -12,6 +12,8 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
+
 //@Profile("!test")
 //@Component
 public class DataLoader implements ApplicationRunner {
@@ -123,14 +125,18 @@ public class DataLoader implements ApplicationRunner {
         GroupWalkie groupWalkie3 = new GroupWalkie("Winky Walk", location2, "26-11-2023", 4.1, 60);
         groupwalkieRepository.save(groupWalkie3);
 
-        Notification notification1 = new Notification("Glasgow", "Park", user1);
-        notificationRepository.save(notification1);
+        HashMap<String, String> map1 = new HashMap<>();
+        map1.put("Location", "Kelvingrove");
+        map1.put("Date", "Tomorrow");
+        map1.put("Message", "Hey! Would you like to go on a walk with me tomorrow?");
+        Notification park = new Notification(map1);
+
 
         user1.addDog(dog1);
         user1.addDog(dog2);
         user1.addWalkie(walkie1);
         user1.addGropuWalkie(groupWalkie1);
-        user1.addNotification(notification1);
+        user1.addNotification(park);
         userRepository.save(user1);
 
         user2.addDog(dog3);

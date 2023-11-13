@@ -55,9 +55,9 @@ public class User {
 //    @Transient  // This annotation is used because JPA does not support MultiValueMap
 //    private MultiValuedMap<String, String> notifications;
 
-    @JsonIgnoreProperties({"user"})
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Notification> notifications;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "user_id")
+    private List<Notification> notifications = new ArrayList<>();
 
     @JsonIgnoreProperties({"users"})
     @ManyToMany
@@ -231,15 +231,6 @@ public class User {
     public void setPhotoURL(String photoURL) {
         this.photoURL = photoURL;
     }
-
-//    public MultiValuedMap<String, String> getNotifications() {
-//        return notifications;
-//    }
-//
-//    public void setNotifications(MultiValuedMap<String, String> notifications) {
-//        this.notifications = notifications;
-//    }
-
 
     public List<Notification> getNotifications() {
         return notifications;

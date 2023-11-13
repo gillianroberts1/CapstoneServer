@@ -96,11 +96,11 @@ class CapstoneApplicationTests {
 	public void canSendNotificationsToUser(){
 		User john = new User("John", "Doe", "johndoe@gmail.com");
 		userRepository.save(john);
-//		MultiValuedMap<String, String> notifications = new ArrayListValuedHashMap<>();
-//		notifications.put("John", "Park");
-//		notifications.put("John", "Glasgow");
-//		john.setNotifications(notifications);
-		Notification park = new Notification("Glasgow", "Park", john);
+		HashMap<String, String> map = new HashMap<>();
+		map.put("Location", "Kelvingrove");
+		map.put("Date", "Tomorrow");
+		map.put("Message", "Hey! Would you like to go on a walk with me tomorrow?");
+		Notification park = new Notification(map);
 		notificationRepository.save(park);
 
 		john.addNotification(park);
