@@ -72,12 +72,12 @@ public class DogController {
         if(existingDog.getRating() != null) {
             existingDog.setRating(updatedDog.getRating());
         }
-        if(existingDog.getWalkies() != null) {
-            existingDog.setWalkies(updatedDog.getWalkies());
-        }
-        if(existingDog.getGroupWalkies() != null) {
-            existingDog.setGroupWalkies(updatedDog.getGroupWalkies());
-        }
+//        if(existingDog.getWalkies() != null) {
+//            existingDog.setWalkies(updatedDog.getWalkies());
+//        }
+//        if(existingDog.getGroupWalkies() != null) {
+//            existingDog.setGroupWalkies(updatedDog.getGroupWalkies());
+//        }
         dogRepository.save(existingDog);
         return new ResponseEntity<>(existingDog, HttpStatus.OK);
     }

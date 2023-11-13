@@ -32,15 +32,15 @@ public class Walkie {
     )
     private List<User> users;
 
-    @JsonIgnore
-    @ManyToMany
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @JoinTable(
-            name = "walkies_dogs",
-            joinColumns ={@JoinColumn(name = "walkie_id", nullable = false, updatable = false)},
-            inverseJoinColumns =  {@JoinColumn(name = "dog_id", nullable = false, updatable = false)}
-    )
-    private List<Dog> dogs;
+//    @JsonIgnore
+//    @ManyToMany
+//    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+//    @JoinTable(
+//            name = "walkies_dogs",
+//            joinColumns ={@JoinColumn(name = "walkie_id", nullable = false, updatable = false)},
+//            inverseJoinColumns =  {@JoinColumn(name = "dog_id", nullable = false, updatable = false)}
+//    )
+//    private List<Dog> dogs;
 
     @JsonIgnoreProperties({"walkies"})
     @ManyToOne
@@ -51,7 +51,7 @@ public class Walkie {
         this.date = date;
         this.location = location;
         this.users = new ArrayList<User>();
-        this.dogs = new ArrayList<Dog>();
+//        this.dogs = new ArrayList<Dog>();
     }
 
     public Walkie() {
@@ -81,13 +81,13 @@ public class Walkie {
         this.users = users;
     }
 
-    public List<Dog> getDogs() {
-        return dogs;
-    }
-
-    public void setDogs(List<Dog> dogs) {
-        this.dogs = dogs;
-    }
+//    public List<Dog> getDogs() {
+//        return dogs;
+//    }
+//
+//    public void setDogs(List<Dog> dogs) {
+//        this.dogs = dogs;
+//    }
 
     public Location getLocation() {
         return location;
@@ -101,9 +101,9 @@ public class Walkie {
         this.users.add(user);
     }
 
-    public void addDog(Dog dog){
-        this.dogs.add(dog);
-    }
+//    public void addDog(Dog dog){
+//        this.dogs.add(dog);
+//    }
 
     public void addLocation(Location location){
         this.location = location;
