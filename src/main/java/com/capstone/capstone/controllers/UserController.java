@@ -34,7 +34,22 @@ public class UserController {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-}
+    }
+
+    @PostMapping(value = "/users/{id}/favourites/{favId}")
+    public ResponseEntity<User> addFavouriteToUser(@PathVariable Long id, @PathVariable Long favId){
+        Optional<User> userOptional = userRepository.findById(id);
+        Optional<User> favUserOptional = userRepository.findById(favId);
+        if(userOptional.isPresent() && favUserOptional.isPresent()) {
+            User user = userOptional.get();
+            User favUser = favUserOptional.get();
+            user.addFavourite(favUser);
+            userRepository.save(user);
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
     @DeleteMapping(value = "/users/{id}")
     public ResponseEntity<User> deleteUser(@PathVariable Long id){

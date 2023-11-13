@@ -14,14 +14,14 @@ public class Favourite {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonIgnoreProperties({"favourites"})
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+//    @JsonIgnoreProperties({"favourites"})
+//    @ManyToOne
+//    @JoinColumn(name = "user_id", nullable = false)
+//    private User user;
 
     public Favourite(Long id, User user) {
         this.id = id;
-        this.user = user;
+//        this.user = user;
     }
 
     public Favourite() {
@@ -35,12 +35,11 @@ public class Favourite {
         this.id = id;
     }
 
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 }

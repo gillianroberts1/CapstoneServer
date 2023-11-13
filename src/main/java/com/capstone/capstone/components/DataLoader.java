@@ -137,6 +137,7 @@ public class DataLoader implements ApplicationRunner {
         user1.addWalkie(walkie1);
         user1.addGropuWalkie(groupWalkie1);
         user1.addNotification(park);
+        user1.addFavourite(user2);
         userRepository.save(user1);
 
         user2.addDog(dog3);

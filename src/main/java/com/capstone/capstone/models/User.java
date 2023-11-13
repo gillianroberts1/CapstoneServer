@@ -15,6 +15,9 @@ import java.util.Map;
 
 @Entity
 @Table(name = "users")
+@JsonIdentityInfo(
+  generator = ObjectIdGenerators.PropertyGenerator.class, 
+  property = "id")
 public class User {
 
     @Id
@@ -48,12 +51,13 @@ public class User {
     @Column(name = "uid")
     private String uid;
 
-//    @ElementCollection
-//    @CollectionTable(name = "notifications", joinColumns = @JoinColumn(name = "user_id"))
-//    @MapKeyColumn(name = "notification_key")
-//    @Column(name = "notification_value")
-//    @Transient  // This annotation is used because JPA does not support MultiValueMap
-//    private MultiValuedMap<String, String> notifications;
+    @ManyToMany
+    @JoinTable(
+    name = "favourites",
+    joinColumns = @JoinColumn(name = "user_id"),
+    inverseJoinColumns = @JoinColumn(name = "favourite_user_id")
+    )
+    private List<User> favourites;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "user_id")
@@ -83,10 +87,6 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Dog> dogs;
 
-    @JsonIgnoreProperties({"user"})
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Favourite> favourites;
-
     public User(String firstName, String lastName, String email){
         this.firstName = firstName;
         this.lastName = lastName;
@@ -101,7 +101,7 @@ public class User {
         this.walkies = new ArrayList<Walkie>();
         this.groupWalkies = new ArrayList<GroupWalkie>();
         this.dogs = new ArrayList<Dog>();
-        this.favourites = new ArrayList<Favourite>();
+        this.favourites = new ArrayList<User>();
     }
 
     public User() {
@@ -191,11 +191,12 @@ public class User {
         this.dogs = dogs;
     }
 
-    public List<Favourite> getFavourites() {
+
+    public List<User> getFavourites() {
         return favourites;
     }
 
-    public void setFavourites(List<Favourite> favourites) {
+    public void setFavourites(List<User> favourites) {
         this.favourites = favourites;
     }
 
@@ -242,6 +243,10 @@ public class User {
 
     public void addNotification(Notification notification){
         this.notifications.add(notification);
+    }
+
+    public void addFavourite(User user){
+        this.favourites.add(user);
     }
 }
 
