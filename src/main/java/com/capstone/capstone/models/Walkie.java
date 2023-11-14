@@ -21,8 +21,10 @@ public class Walkie {
     @Column(name = "date")
     private String date;
 
+    @Column(name = "location")
+    private String location;
+
     @JsonIgnoreProperties({"walkies"})
-    @JsonBackReference
     @ManyToMany
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
@@ -32,26 +34,10 @@ public class Walkie {
     )
     private List<User> users;
 
-//    @JsonIgnore
-//    @ManyToMany
-//    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-//    @JoinTable(
-//            name = "walkies_dogs",
-//            joinColumns ={@JoinColumn(name = "walkie_id", nullable = false, updatable = false)},
-//            inverseJoinColumns =  {@JoinColumn(name = "dog_id", nullable = false, updatable = false)}
-//    )
-//    private List<Dog> dogs;
-
-    @JsonIgnoreProperties({"walkies"})
-    @ManyToOne
-    @JoinColumn(name = "location_id", nullable = false)
-    private Location location;
-
-    public Walkie(String date, Location location) {
+    public Walkie(String date, String location) {
         this.date = date;
         this.location = location;
         this.users = new ArrayList<User>();
-//        this.dogs = new ArrayList<Dog>();
     }
 
     public Walkie() {
@@ -81,31 +67,22 @@ public class Walkie {
         this.users = users;
     }
 
-//    public List<Dog> getDogs() {
-//        return dogs;
-//    }
-//
-//    public void setDogs(List<Dog> dogs) {
-//        this.dogs = dogs;
-//    }
+    public void addUser(User user){
+        this.users.add(user);
+        user.getWalkies().add(this);
+    }
 
-    public Location getLocation() {
+    public void removeUser(User user) {
+        this.users.remove(user);
+        user.getWalkies().remove(this);
+    }
+
+    public String getLocation() {
         return location;
     }
 
-    public void setLocation(Location location) {
+    public void setLocation(String location) {
         this.location = location;
     }
 
-    public void addUser(User user){
-        this.users.add(user);
-    }
-
-//    public void addDog(Dog dog){
-//        this.dogs.add(dog);
-//    }
-
-    public void addLocation(Location location){
-        this.location = location;
-    }
 }

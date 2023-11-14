@@ -59,8 +59,12 @@ public class User {
     )
     private List<User> favourites;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "user_id")
+    // @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    // @JoinColumn(name = "user_id")
+    // private List<Notification> notifications = new ArrayList<>();
+
+    @JsonIgnoreProperties({"user"})
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, orphanRemoval = true)
     private List<Notification> notifications = new ArrayList<>();
 
     @JsonIgnoreProperties({"users"})
@@ -243,15 +247,22 @@ public class User {
 
     public void addNotification(Notification notification){
         this.notifications.add(notification);
+        notification.setUser(this);
     }
 
     public void addFavourite(User user){
         this.favourites.add(user);
     }
 
+    public void removeNotification(Notification notification) {
+        this.notifications.remove(notification);
+        notification.setUser(null);
+    }
+
     public void removeFavourite(User favUser) {
         this.favourites.remove(favUser);
         favUser.getFavourites().remove(this);
+
     }
 }
 

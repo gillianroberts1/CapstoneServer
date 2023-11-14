@@ -106,16 +106,16 @@ public class DataLoader implements ApplicationRunner {
         locationRepository.save(location10);
 
 
-        Walkie walkie1 = new Walkie("21-11-2023", location1);
+        Walkie walkie1 = new Walkie("21-11-2023", "Maxwell");
         walkie1.addUser(user1);
         walkie1.addUser(user2);
         walkieRepository.save(walkie1);
-        Walkie walkie2 = new Walkie("03-12-2023", location2);
+        Walkie walkie2 = new Walkie("03-12-2023", "Springburn");
         walkie2.addUser(user3);
         walkieRepository.save(walkie2);
-        Walkie walkie3 = new Walkie("01-01-2024", location3);
+        Walkie walkie3 = new Walkie("01-01-2024", "Kelvingrove");
         walkieRepository.save(walkie3);
-        Walkie walkie4 = new Walkie("10-01-2024", location4);
+        Walkie walkie4 = new Walkie("10-01-2024", "Queens Park");
         walkieRepository.save(walkie4);
 
         GroupWalkie groupWalkie1 = new GroupWalkie("Puppy Walk", "Glasgow Green", "12-11-2023", 2.1, 60);
@@ -125,18 +125,12 @@ public class DataLoader implements ApplicationRunner {
         GroupWalkie groupWalkie3 = new GroupWalkie("Winky Walk", "Queens Park", "26-11-2023", 4.1, 60);
         groupwalkieRepository.save(groupWalkie3);
 
-        HashMap<String, String> map1 = new HashMap<>();
-        map1.put("Location", "Kelvingrove");
-        map1.put("Date", "Tomorrow");
-        map1.put("Message", "Hey! Would you like to go on a walk with me tomorrow?");
-        Notification park = new Notification(map1);
-
 
         user1.addDog(dog1);
         user1.addDog(dog2);
         user1.addWalkie(walkie1);
         user1.addGropuWalkie(groupWalkie1);
-        user1.addNotification(park);
+        // user1.addNotification(park);
         user1.addFavourite(user2);
         userRepository.save(user1);
 
@@ -154,31 +148,14 @@ public class DataLoader implements ApplicationRunner {
         user4.addDog(dog5);
         userRepository.save(user4);
 
-//        dog1.addWalkie(walkie1);
-//        dogRepository.save(dog1);
-////
-//        dog2.addWalkie(walkie2);
-//        dogRepository.save(dog2);
-////
-//        dog3.addWalkie(walkie3);
-//        dogRepository.save(dog3);
-////
-//        dog4.addWalkie(walkie4);
-//        dogRepository.save(dog4);
-
         groupWalkie1.addUser(user1);
         groupWalkie1.addUser(user2);
-//        groupWalkie1.addDog(dog1);
-//        groupWalkie1.addDog(dog2);
         groupwalkieRepository.save(groupWalkie1);
         groupWalkie2.addUser(user3);
-//        groupWalkie2.addDog(dog3);
         groupwalkieRepository.save(groupWalkie2);
         groupWalkie3.addUser(user4);
         groupWalkie3.addUser(user5);
         groupWalkie3.addUser(user6);
-//        groupWalkie3.addDog(dog4);
-//        groupWalkie3.addDog(dog5);
         groupwalkieRepository.save(groupWalkie3);
 
 

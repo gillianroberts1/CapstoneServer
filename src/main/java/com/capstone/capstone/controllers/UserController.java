@@ -1,5 +1,6 @@
 package com.capstone.capstone.controllers;
 
+import com.capstone.capstone.models.NotificationDto;
 import com.capstone.capstone.models.User;
 import com.capstone.capstone.models.Notification;
 import com.capstone.capstone.repository.UserRepository;
@@ -85,13 +86,32 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
+//    @PostMapping(value = "/users/{id}/notifications")
+//    public ResponseEntity<User> addNotificationToUser(@PathVariable Long id, @RequestBody Notification notification){
+//        Optional<User> userOptional = userRepository.findById(id);
+//        if(userOptional.isPresent()) {
+//            User user = userOptional.get();
+//            user.addNotification(notification);
+//            userRepository.save(user);
+//            return new ResponseEntity<>(user, HttpStatus.OK);
+//        } else {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//    }
+
     @PostMapping(value = "/users/{id}/notifications")
-    public ResponseEntity<User> addNotificationToUser(@PathVariable Long id, @RequestBody Notification notification){
+    public ResponseEntity<User> addNotificationToUser(@PathVariable Long id, @RequestBody NotificationDto notificationDto){
         Optional<User> userOptional = userRepository.findById(id);
-        if(userOptional.isPresent()) {
+        Optional<User> senderOptional = userRepository.findById(notificationDto.getSenderId());
+
+        if(userOptional.isPresent() && senderOptional.isPresent()) {
             User user = userOptional.get();
+            User sender = senderOptional.get();
+
+            Notification notification = new Notification(notificationDto.getEntries(), user, sender);
             user.addNotification(notification);
             userRepository.save(user);
+
             return new ResponseEntity<>(user, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
