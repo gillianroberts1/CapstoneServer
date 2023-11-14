@@ -25,7 +25,6 @@ public class Walkie {
     private String location;
 
     @JsonIgnoreProperties({"walkies"})
-    @JsonBackReference
     @ManyToMany
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
@@ -70,6 +69,12 @@ public class Walkie {
 
     public void addUser(User user){
         this.users.add(user);
+        user.getWalkies().add(this);
+    }
+
+    public void removeUser(User user) {
+        this.users.remove(user);
+        user.getWalkies().remove(this);
     }
 
     public String getLocation() {
@@ -79,4 +84,5 @@ public class Walkie {
     public void setLocation(String location) {
         this.location = location;
     }
+
 }
