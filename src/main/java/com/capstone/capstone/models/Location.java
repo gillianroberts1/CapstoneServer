@@ -21,9 +21,9 @@ public class Location {
     @Column(name="park")
     private GlasgowPark glasgowPark;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "location")
-    private List<Walkie> walkies;
+//    @JsonBackReference
+//    @OneToMany(mappedBy = "location")
+//    private List<Walkie> walkies;
 
 //    @JsonIgnore
 //    @OneToMany(mappedBy = "location")
@@ -31,7 +31,7 @@ public class Location {
 
     public Location(GlasgowPark glasgowPark) {
         this.glasgowPark = glasgowPark;
-        this.walkies = new ArrayList<Walkie>();
+//        this.walkies = new ArrayList<Walkie>();
 //        this.groupWalkies = new ArrayList<GroupWalkie>();
     }
 
@@ -58,13 +58,13 @@ public class Location {
         return glasgowPark.getDifficulty();
     }
 
-    public List<Walkie> getWalkies() {
-        return walkies;
-    }
-
-    public void setWalkies(List<Walkie> walkies) {
-        this.walkies = walkies;
-    }
+//    public List<Walkie> getWalkies() {
+//        return walkies;
+//    }
+//
+//    public void setWalkies(List<Walkie> walkies) {
+//        this.walkies = walkies;
+//    }
 //
 //    public List<GroupWalkie> getGroupWalkies() {
 //        return groupWalkies;
