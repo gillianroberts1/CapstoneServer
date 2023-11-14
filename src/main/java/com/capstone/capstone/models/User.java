@@ -254,9 +254,15 @@ public class User {
         this.favourites.add(user);
     }
 
-    public void removeNotification(Notification notification){
+    public void removeNotification(Notification notification) {
         this.notifications.remove(notification);
         notification.setUser(null);
+    }
+
+    public void removeFavourite(User favUser) {
+        this.favourites.remove(favUser);
+        favUser.getFavourites().remove(this);
+
     }
 }
 
