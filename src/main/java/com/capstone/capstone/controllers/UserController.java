@@ -51,6 +51,27 @@ public class UserController {
         }
     }
 
+    @DeleteMapping(value = "/users/{id}/favourites/{favUserId}")
+    public ResponseEntity<User> removeFavouriteFromUser(@PathVariable Long id, @PathVariable Long favUserId){
+        Optional<User> userOptional = userRepository.findById(id);
+        Optional<User> favUserOptional = userRepository.findById(favUserId);
+
+        if(userOptional.isPresent() && favUserOptional.isPresent()) {
+            User user = userOptional.get();
+            User favUser = favUserOptional.get();
+
+            if (user.getFavourites().contains(favUser)) {
+                user.removeFavourite(favUser);
+                userRepository.save(user);
+                return new ResponseEntity<>(user, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     @DeleteMapping(value = "/users/{id}")
     public ResponseEntity<User> deleteUser(@PathVariable Long id){
         Optional<User> userToDelete = userRepository.findById(id);

@@ -248,6 +248,11 @@ public class User {
     public void addFavourite(User user){
         this.favourites.add(user);
     }
+
+    public void removeFavourite(User favUser) {
+        this.favourites.remove(favUser);
+        favUser.getFavourites().remove(this);
+    }
 }
 
 
