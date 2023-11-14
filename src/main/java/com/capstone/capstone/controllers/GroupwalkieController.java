@@ -92,6 +92,9 @@ public class GroupwalkieController {
         if(updatedGroupWalkie.getUsers() != null) {
             existingGroupWalkie.setUsers(updatedGroupWalkie.getUsers());
         }
+        if(updatedGroupWalkie.getPhotoURL() != null) {
+            existingGroupWalkie.setPhotoURL(updatedGroupWalkie.getPhotoURL());
+        }
         groupwalkieRepository.save(existingGroupWalkie);
         return new ResponseEntity<>(existingGroupWalkie, HttpStatus.OK);
     }

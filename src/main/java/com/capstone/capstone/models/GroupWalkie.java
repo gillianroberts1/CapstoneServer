@@ -33,6 +33,8 @@ public class GroupWalkie {
     @Column(name = "location")
     private String location;
 
+    @Column(name = "photoURL")
+    private String photoURL;
 
     @ManyToMany
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
@@ -43,22 +45,6 @@ public class GroupWalkie {
     )
     private List<User> users;
 
-//    @JsonIgnoreProperties({"groupWalkies"})
-//    @JsonIgnore
-//    @ManyToMany
-//    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-//    @JoinTable(
-//            name = "groupWalkies_dogs",
-//            joinColumns ={@JoinColumn(name = "groupWalkie_id", nullable = false, updatable = false)},
-//            inverseJoinColumns =  {@JoinColumn(name = "dog_id", nullable = false, updatable = false)}
-//    )
-//    private List<Dog> dogs;
-
-//    @JsonIgnoreProperties({"groupWalkies"})
-//    @ManyToOne
-//    @JoinColumn(name = "location_id", nullable = false)
-//    private Location location;
-
     public GroupWalkie(String name, String location, String date, Double distance, Integer duration) {
         this.name = name;
         this.location = location;
@@ -66,7 +52,7 @@ public class GroupWalkie {
         this.distance = distance;
         this.duration = duration;
         this.users = new ArrayList<User>();
-//        this.dogs = new ArrayList<Dog>();
+        this.photoURL = null;
     }
 
     public GroupWalkie() {
@@ -138,5 +124,13 @@ public class GroupWalkie {
 
     public void removeUser(User user) {
         this.users.remove(user);
+    }
+
+    public String getPhotoURL() {
+        return photoURL;
+    }
+
+    public void setPhotoURL(String photoURL) {
+        this.photoURL = photoURL;
     }
 }
