@@ -118,11 +118,11 @@ public class DataLoader implements ApplicationRunner {
         Walkie walkie4 = new Walkie("10-01-2024", location4);
         walkieRepository.save(walkie4);
 
-        GroupWalkie groupWalkie1 = new GroupWalkie("Puppy Walk", location1, "12-11-2023", 2.1, 60);
+        GroupWalkie groupWalkie1 = new GroupWalkie("Puppy Walk", "Glasgow Green", "12-11-2023", 2.1, 60);
         groupwalkieRepository.save(groupWalkie1);
-        GroupWalkie groupWalkie2 = new GroupWalkie("Big Dog Walk", location3, "22-11-2023", 3.1, 60);
+        GroupWalkie groupWalkie2 = new GroupWalkie("Big Dog Walk", "Kelvinbridge", "22-11-2023", 3.1, 60);
         groupwalkieRepository.save(groupWalkie2);
-        GroupWalkie groupWalkie3 = new GroupWalkie("Winky Walk", location2, "26-11-2023", 4.1, 60);
+        GroupWalkie groupWalkie3 = new GroupWalkie("Winky Walk", "Queens Park", "26-11-2023", 4.1, 60);
         groupwalkieRepository.save(groupWalkie3);
 
         HashMap<String, String> map1 = new HashMap<>();
@@ -137,6 +137,7 @@ public class DataLoader implements ApplicationRunner {
         user1.addWalkie(walkie1);
         user1.addGropuWalkie(groupWalkie1);
         user1.addNotification(park);
+        user1.addFavourite(user2);
         userRepository.save(user1);
 
         user2.addDog(dog3);
