@@ -148,6 +148,9 @@ public class UserController {
         if(updatedUser.getPhotoURL() != null) {
             existingUser.setPhotoURL(updatedUser.getPhotoURL());
         }
+        if(updatedUser.getTotalDistance() != null) {
+            existingUser.setTotalDistance(updatedUser.getTotalDistance());
+        }
         userRepository.save(existingUser);
         return new ResponseEntity<>(existingUser, HttpStatus.OK);
     }

@@ -14,8 +14,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 
-//@Profile("!test")
-//@Component
+@Profile("!test")
+@Component
 public class DataLoader implements ApplicationRunner {
 
     @Autowired
@@ -68,7 +68,7 @@ public class DataLoader implements ApplicationRunner {
         userRepository.save(user13);
         User user14 = new User("Samantha", "Gillies", "sam@gmail.com");
         userRepository.save(user14);
-        User user15 = new User("Gilian", "Roberts", "gilly@hotmail.com");
+        User user15 = new User("Gillian", "Roberts", "gilly@hotmail.com");
         userRepository.save(user15);
         User user16 = new User("Ibrahim", "Abubakar", "ibrahim@gmail.com");
         userRepository.save(user16);
@@ -77,30 +77,43 @@ public class DataLoader implements ApplicationRunner {
 
 
         Dog dog1 = new Dog("Becky", "female", "Chihuahua", user1);
+        dog1.setRating(3);
         dogRepository.save(dog1);
         Dog dog2 = new Dog("Max", "male", "Labrador", user1);
+        dog2.setRating(4);
         dogRepository.save(dog2);
         Dog dog3 = new Dog("Bella", "female", "Bulldog", user3);
+        dog3.setRating(1);
         dogRepository.save(dog3);
         Dog dog4 = new Dog("Rocky", "male", "Golden Retriever", user4);
+        dog4.setRating(5);
         dogRepository.save(dog4);
         Dog dog5 = new Dog("Lucy", "female", "Pomeranian", user5);
+        dog2.setRating(4);
         dogRepository.save(dog5);
         Dog dog6 = new Dog("Charlie", "male", "German Shepherd", user6);
+        dog6.setRating(3);
         dogRepository.save(dog6);
         Dog dog7 = new Dog("Daisy", "female", "Dachshund", user7);
+        dog7.setRating(3);
         dogRepository.save(dog7);
         Dog dog8 = new Dog("Cooper", "male", "Beagle", user8);
+        dog8.setRating(5);
         dogRepository.save(dog8);
         Dog dog9 = new Dog("Lola", "female", "Poodle", user9);
+        dog9.setRating(2);
         dogRepository.save(dog9);
         Dog dog10 = new Dog("Tucker", "male", "Rottweiler", user10);
+        dog10.setRating(5);
         dogRepository.save(dog10);
         Dog dog11 = new Dog("Nala", "female", "Staffie", user11);
+        dog11.setRating(4);
         dogRepository.save(dog11);
         Dog dog12 = new Dog("Carmen", "female", "Chihuahua", user15);
+        dog12.setRating(5);
         dogRepository.save(dog12);
         Dog dog13 = new Dog("Lilly", "female", "Shih Tzu", user14);
+        dog13.setRating(4);
 
         dog11.setPhotoURL("https://firebasestorage.googleapis.com/v0/b/chat-84fb4.appspot.com/o/dogs%2FIMG_1326.jpeg?alt=media&token=97f97956-11e3-4392-b4ac-1af29bbf5364");
         dogRepository.save(dog11);
