@@ -164,11 +164,11 @@ public class DataLoader implements ApplicationRunner {
 //        Walkie walkie4 = new Walkie("10-01-2024", "Queens Park");
 //        walkieRepository.save(walkie4);
 
-        GroupWalkie groupWalkie1 = new GroupWalkie("Puppy Walk", "Glasgow Green", "12-11-2023", 2.1, 60);
+        GroupWalkie groupWalkie1 = new GroupWalkie("Puppy Walk", "Glasgow Green", "2023-11-22T11:30", 2.1, 60);
         groupwalkieRepository.save(groupWalkie1);
-        GroupWalkie groupWalkie2 = new GroupWalkie("Big Dog Walk", "Kelvinbridge", "22-11-2023", 3.1, 60);
+        GroupWalkie groupWalkie2 = new GroupWalkie("Big Dog Walk", "Kelvinbridge", "2023-12-10T16:15", 3.1, 60);
         groupwalkieRepository.save(groupWalkie2);
-        GroupWalkie groupWalkie3 = new GroupWalkie("Winky Walk", "Queens Park", "26-11-2023", 4.1, 60);
+        GroupWalkie groupWalkie3 = new GroupWalkie("Winky Walk", "Queens Park", "2023-12-22T13:15", 4.1, 60);
         groupwalkieRepository.save(groupWalkie3);
 
 
@@ -317,8 +317,6 @@ public class DataLoader implements ApplicationRunner {
         groupWalkie2.addUser(user3);
         groupWalkie2.addUser(user9);
         groupWalkie2.addUser(user10);
-        groupWalkie2.addUser(user1);
-        groupWalkie2.addUser(user2);
         groupWalkie2.setPhotoURL("https://images.unsplash.com/photo-1564409972016-2825589beaed?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8UXVlZW5zJTIwUGFyayUyMGdsYXNnb3d8ZW58MHx8MHx8fDA%3D");
         groupwalkieRepository.save(groupWalkie2);
         groupWalkie3.addUser(user4);
