@@ -46,7 +46,7 @@ public class User {
     private String gender;
 
     @Column(name = "area")
-    private Area area;
+    private String area;
 
     @Column(name = "uid")
     private String uid;
@@ -159,11 +159,11 @@ public class User {
         this.gender = gender;
     }
 
-    public Area getArea() {
+    public String getArea() {
         return area;
     }
 
-    public void setArea(Area area) {
+    public void setArea(String area) {
         this.area = area;
     }
 
